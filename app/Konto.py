@@ -9,7 +9,7 @@ class Konto:
             self.pesel = "Niepoprawny pesel!"
 
         if kod_rabatowy:
-            if kod_rabatowy == "PROM_XYZ"
+            if kod_rabatowy == "PROM_XYZ":
                 self.saldo = 50
             else:
                 self.saldo = 0
