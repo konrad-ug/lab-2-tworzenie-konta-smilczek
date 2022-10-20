@@ -9,13 +9,15 @@ class TestCreateBankAccount(unittest.TestCase):
         nazwisko = "januszewski"
         pesel = "12345678910"
         n_pesel = "1234"
+        rok_ur = "1960"
         kod_rabatowy = "PROM_XYZ"
         n_kod_rabatowy = "PROM_ZYX"
 
-        pierwsze_konto = Konto(imie, nazwisko, pesel)
+        pierwsze_konto = Konto(imie, nazwisko, pesel, rok_ur)
         self.assertEqual(pierwsze_konto.imie, imie, "Imie nie zostało zapisane!")
         self.assertEqual(pierwsze_konto.nazwisko, nazwisko, "Nazwisko nie zostało zapisane!")
         self.assertEqual(pierwsze_konto.saldo, 0, "Saldo nie jest zerowe!")
+        self.assertEqual(pierwsze_konto.rok_ur, "1960", "Rok urodzenia nie został zapisany!")
         
 
     #tutaj proszę dodawać nowe testy
@@ -27,7 +29,8 @@ class TestCreateBankAccount(unittest.TestCase):
         self.assertEqual(pierwsze_konto.pesel, "Niepoprawny pesel!", "Pesel nie został poprawnie sprawdzony w konstruktorze")
 
     def test_kod_rabatowy
-        drugie_konto = Konto(imie, nazwisko, n_pesel, kod_rabatowy)
+        pierwsze_konto = Konto(imie, nazwisko, pesel, rok_ur, kod_rabatowy)
+        drugie_konto = Konto(imie, nazwisko, n_pesel, rok_ur, kod_rabatowy)
         self.assertEqual(drugie_konto.saldo, 50, "Kod rabatowy został niepoprawnie sprawdzony!")
 
         trzecie_konto = Konto(imie, nazwisko, pesel, n_kod_rabatowy)
