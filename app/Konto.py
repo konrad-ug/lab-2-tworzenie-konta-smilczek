@@ -1,8 +1,8 @@
 class Konto:
-    def __init__(self, imie, nazwisko, pesel, kod_rabatowy=None):
+    def __init__(self, imie, nazwisko, pesel, rok_ur, kod_rabatowy=None):
         self.imie = imie
         self.nazwisko = nazwisko
-
+        self.rok_ur = rok_ur
         if len(pesel) == 11:
             self.pesel = pesel
         else:
