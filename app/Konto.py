@@ -9,7 +9,10 @@ class Konto:
             self.pesel = "Niepoprawny pesel!"
 
         self.saldo = 0
+        self.check_kod_rabatowy(kod_rabatowy)
+
+    def check_kod_rabatowy(self, kod_rabatowy):
         if kod_rabatowy:
             if kod_rabatowy == "PROM_XYZ":
-                if int(pesel[:2]) > 60:
+                if int(self.pesel[:2]) > 60:
                     self.saldo += 50
