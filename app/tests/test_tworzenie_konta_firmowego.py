@@ -11,3 +11,5 @@ class TestTworzenieKontaFirmowego(unittest.TestCase):
         self.assertEqual(pierwsze_konto.nazwa_firmy, nazwa_firmy, "Nazwa firmy nie została zapisana!")
         self.assertEqual(pierwsze_konto.nip, nip, "Nr NIP nie został zapisany!")
         self.assertEqual(pierwsze_konto.saldo, 0, "Saldo nie jest zerowe!")
+
+
