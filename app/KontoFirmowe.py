@@ -6,10 +6,7 @@ class KontoFirmowe(Konto):
         self.nazwa_firmy = nazwa_firmy
         self.nip = nip if self.czy_poprawny_nip(nip) else "Niepoprawny NIP!"
         self.saldo = 0
+        self.oplata_za_ekspres = 5
 
     def czy_poprawny_nip(self, nip):
         return len(nip) == 10
-
-    def zaksieguj_przelew_ekspresowy(self, kwota):
-        if self.saldo >= kwota:
-            self.saldo -= kwota + 5

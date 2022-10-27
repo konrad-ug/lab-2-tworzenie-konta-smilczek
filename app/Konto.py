@@ -2,6 +2,7 @@ class Konto:
     def __init__(self, imie, nazwisko, pesel, kod_rabatowy=None):
         self.imie = imie
         self.nazwisko = nazwisko
+        self.oplata_za_ekspres = 1
 
         if len(pesel) == 11:
             self.pesel = pesel
@@ -26,4 +27,4 @@ class Konto:
 
     def zaksieguj_przelew_ekspresowy(self, kwota):
         if self.saldo >= kwota:
-            self.saldo -= kwota + 1
+            self.saldo -= kwota + self.oplata_za_ekspres
