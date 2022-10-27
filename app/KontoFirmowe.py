@@ -9,3 +9,7 @@ class KontoFirmowe(Konto):
 
     def czy_poprawny_nip(self, nip):
         return len(nip) == 10
+
+    def zaksieguj_przelew_ekspresowy(self, kwota):
+        if self.saldo >= kwota:
+            self.saldo -= kwota + 5

@@ -25,5 +25,5 @@ class Konto:
         self.saldo += kwota
 
     def zaksieguj_przelew_ekspresowy(self, kwota):
-        if self.saldo >= kwota + 1:
+        if self.saldo >= kwota:
             self.saldo -= kwota + 1

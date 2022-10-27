@@ -20,7 +20,7 @@ class TestKsiegowaniePrzelewow(unittest.TestCase):
         konto = Konto(imie, nazwisko, pesel)
         konto.saldo = 1000
         konto.zaksieguj_przelew_ekspresowy(1000)
-        self.assertEqual(konto.saldo, 1000, "Przelew nie został poprawnie sprawdzony")
+        self.assertEqual(konto.saldo, -1, "Przelew nie został poprawnie sprawdzony")
 
     def test_udany_przelew_eksresowy_konto_firmowe(self):
         konto = KontoFirmowe(nazwa_firmy, nip)
@@ -32,4 +32,4 @@ class TestKsiegowaniePrzelewow(unittest.TestCase):
         konto = KontoFirmowe(nazwa_firmy, nip)
         konto.saldo = 1000
         konto.zaksieguj_przelew_ekspresowy(1000)
-        self.assertEqual(konto.saldo, 1000, "Przelew nie został poprawnie sprawdzony")
+        self.assertEqual(konto.saldo, -5, "Przelew nie został poprawnie sprawdzony")
