@@ -16,3 +16,7 @@ class Konto:
             if kod_rabatowy == "PROM_XYZ":
                 if int(self.pesel[:2]) > 60:
                     self.saldo += 50
+
+    def zaksieguj_przelew_wychodzacy(self, kwota):
+        if self.saldo >= kwota:
+            self.saldo -= kwota
