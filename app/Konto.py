@@ -20,3 +20,9 @@ class Konto:
     def zaksieguj_przelew_wychodzacy(self, kwota):
         if self.saldo >= kwota:
             self.saldo -= kwota
+
+    def zaksieguj_przelew_przychodzacy(self, kwota):
+        self.saldo += kwota
+
+    def zaksieguj_przelew_ekspresowy(self, kwota):
+        pass
