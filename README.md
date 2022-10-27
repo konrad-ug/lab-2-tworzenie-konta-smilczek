@@ -1,5 +1,8 @@
 # bank-app
 
+Szymon Milczek 278821
+grupa 3
+
 | Termin oddania | Punkty |
 | ------- | ------ |
 | 26.10.2022 23:00 | 10 |
