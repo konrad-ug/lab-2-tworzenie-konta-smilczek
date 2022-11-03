@@ -28,4 +28,3 @@ class Konto:
     def zaksieguj_przelew_ekspresowy(self, kwota):
         if self.saldo >= kwota:
             self.saldo -= kwota + self.oplata_za_ekspres
-
