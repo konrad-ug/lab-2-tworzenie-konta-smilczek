@@ -3,6 +3,7 @@ class Konto:
         self.imie = imie
         self.nazwisko = nazwisko
         self.oplata_za_ekspres = 1
+        self.historia = []
 
         if len(pesel) == 11:
             self.pesel = pesel
@@ -21,10 +22,14 @@ class Konto:
     def zaksieguj_przelew_wychodzacy(self, kwota):
         if self.saldo >= kwota:
             self.saldo -= kwota
+            self.historia.append(-kwota)
 
     def zaksieguj_przelew_przychodzacy(self, kwota):
         self.saldo += kwota
+        self.historia.append(kwota)
 
     def zaksieguj_przelew_ekspresowy(self, kwota):
         if self.saldo >= kwota:
             self.saldo -= kwota + self.oplata_za_ekspres
+            self.historia.append(-kwota)
+            self.historia.append(-self.oplata_za_ekspres)
