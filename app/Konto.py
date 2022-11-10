@@ -33,3 +33,13 @@ class Konto:
             self.saldo -= kwota + self.oplata_za_ekspres
             self.historia.append(-kwota)
             self.historia.append(-self.oplata_za_ekspres)
+
+    def zaciagnij_kredyt(self, kwota):
+        if len(self.historia) < 3:
+            return False
+        if sum(self.historia[-3:]) < sum([abs(el) for el in self.historia[-3:]]): # Jeśli była choć jedna ujemna transakcja w tablicy, suma wartości absolutnych będzie większa
+            return False
+        if sum(self.historia[-5:]) < kwota:
+            return False
+        self.saldo += kwota
+        return True
