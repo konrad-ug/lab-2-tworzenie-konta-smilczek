@@ -37,9 +37,10 @@ class Konto:
     def zaciagnij_kredyt(self, kwota):
         if len(self.historia) < 3:
             return False
-        if sum(self.historia[-3:]) < sum([abs(el) for el in self.historia[-3:]]): # Jeśli była choć jedna ujemna transakcja w tablicy, suma wartości absolutnych będzie większa
-            return False
-        if sum(self.historia[-5:]) < kwota:
-            return False
-        self.saldo += kwota
-        return True
+        if sum(self.historia[-3:]) == sum([abs(el) for el in self.historia[-3:]]): # Jeśli była choć jedna ujemna transakcja w tablicy, suma wartości absolutnych będzie większa
+            self.saldo += kwota
+            return True
+        if sum(self.historia[-5:]) >= kwota:
+            self.saldo += kwota
+            return True
+        return False
