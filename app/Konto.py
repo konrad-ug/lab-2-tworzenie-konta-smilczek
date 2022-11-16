@@ -33,3 +33,19 @@ class Konto:
             self.saldo -= kwota + self.oplata_za_ekspres
             self.historia.append(-kwota)
             self.historia.append(-self.oplata_za_ekspres)
+
+    def kredyt_zasluzony(self, kwota):
+        if len(self.historia) < 3:
+            return False
+        if self.historia[-1] > 0 and self.historia[-2] > 0 and self.historia[-3] > 0:
+            return True
+        if sum(self.historia[-5:]) >= kwota:
+            return True
+        return False
+
+    def zaciagnij_kredyt(self, kwota):
+        if self.kredyt_zasluzony(kwota):
+            self.saldo += kwota
+            return True
+        return False
+        
