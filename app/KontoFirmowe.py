@@ -11,3 +11,15 @@ class KontoFirmowe(Konto):
 
     def czy_poprawny_nip(self, nip):
         return len(nip) == 10
+
+    def kredyt_zasluzony(self, kwota):
+        if -1755 in self.historia:
+            if self.saldo >= kwota * 2:
+                return True
+        return False
+    
+    def zaciagnij_kredyt(self, kwota):
+        if self.kredyt_zasluzony(kwota):
+            self.saldo += kwota
+            return True
+        return False

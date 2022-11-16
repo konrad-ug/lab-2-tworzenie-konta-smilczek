@@ -21,7 +21,7 @@ class TestKredytRefaktor(unittest.TestCase):
         ([-100, 100, -100, 100, 1000], 2000, 700, False, 2000),
         ([100, -1755], 500, 666, False, 500),
         ([-100, -1755, -100, 100, -1000], 2000, 1000, True, 3000),
-        ([-100, 100, 100, 100, -600, 200], 500, False , 0),
+        ([-100, 100, 100, 100, -600, 200], 2000, 500, False , 2000),
     ])
     def test_zaciagnij_kredyt(self, historia, saldo, wnioskowana_kwota, oczekiwany_wynik_wniosku, oczekiwane_saldo):
         self.konto.historia = historia
