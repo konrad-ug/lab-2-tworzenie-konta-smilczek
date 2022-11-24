@@ -13,10 +13,12 @@ nazwisko2 = "Kowalski"
 pesel2 = "69345612377"
 
 class TestRejestr(unittest.TestCase):
-    def setUpClass():
+    @classmethod
+    def setUpClass(cls):
         RejestrKont.dodaj_konto(Konto(imie, nazwisko, pesel))
     
-    def tearDownClass():
+    @classmethod
+    def tearDownClass(cls):
         RejestrKont.konta = []
 
     # def test_1_dodawanie_pierwszego_konta(self):
