@@ -11,6 +11,12 @@ class TestObslugaKont(unittest.TestCase):
         "nazwisko": "kowalski",
         "pesel": "70345678910"
     }
+    update_body = {
+        "imie": "janusz",
+        "nazwisko": "mickiewicz",
+        "pesel": "66100987654",
+        "saldo": 1000
+    }
     
     url = "http://localhost:5000"
     
@@ -31,3 +37,16 @@ class TestObslugaKont(unittest.TestCase):
     #     self.assertEqual(get_resp.status_code, 200)
     #     resp_body = get_resp.json()
     #     self.assertEqual(resp_body, 1)
+    
+    def test_4_put_po_peselu(self):
+        put_resp = requests.put(self.url + f"/konta/konto/{self.body['pesel']}", json=self.update_body)
+        self.assertEqual(put_resp.status_code, 200)
+        get_resp = requests.get(self.url + f"/konta/konto/{self.update_body['pesel']}")
+        resp_body = get_resp.json()
+        self.assertEqual(resp_body['imie'], self.update_body['imie'])
+        self.assertEqual(resp_body["nazwisko"], self.update_body['nazwisko'])
+        self.assertEqual(resp_body["pesel"], self.update_body['pesel'])
+        self.assertEqual(resp_body["saldo"], self.update_body['saldo'])
+        
+    def test_5_delete_po_peselu(self):
+        delete_resp = requests.delete(self.url)

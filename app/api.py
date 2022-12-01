@@ -38,4 +38,9 @@ def aktualizuj_konto_z_peselem(pesel):
     if (dane['imie']):
         konto.imie = dane['imie']
     if (dane['nazwisko']):
-        konto.imie = dane['nazwisko']
+        konto.nazwisko = dane['nazwisko']
+    if (dane['pesel']):
+        konto.pesel = dane['pesel']
+    if (dane['saldo']):
+        konto.saldo = dane['saldo']
+    return jsonify("Konto zaktualizowane"), 200
