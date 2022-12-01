@@ -23,9 +23,19 @@ def wyszukaj_konto_z_peselem(pesel):
     print("Request o wyszukanie konta po numerze pesel")
     konto = RejestrKont.wyszukaj_konto_z_peselem(pesel)
     return jsonify(
-        konto.imie,
-        konto.nazwisko,
-        konto.pesel,
-        konto.saldo,
-        konto.historia
+        imie=konto.imie,
+        nazwisko=konto.nazwisko,
+        pesel=konto.pesel,
+        saldo=konto.saldo,
+        historia=konto.historia
     ), 200
+
+@app.route("/konta/konto/<pesel>", methods=['PUT'])
+def aktualizuj_konto_z_peselem(pesel):
+    dane = request.get_json()
+    print(f"Request o edycję konta z numerem pesel {pesel}")
+    konto = RejestrKont.wyszukaj_konto_z_peselem(pesel)
+    if (dane['imie']):
+        konto.imie = dane['imie']
+    if (dane['nazwisko']):
+        konto.imie = dane['nazwisko']
