@@ -22,6 +22,8 @@ def ile_kont():
 def wyszukaj_konto_z_peselem(pesel):
     print("Request o wyszukanie konta po numerze pesel")
     konto = RejestrKont.wyszukaj_konto_z_peselem(pesel)
+    if not konto: 
+        return jsonify("Konto nie istnieje"), 404
     return jsonify(
         imie=konto.imie,
         nazwisko=konto.nazwisko,
@@ -34,13 +36,11 @@ def wyszukaj_konto_z_peselem(pesel):
 def aktualizuj_konto_z_peselem(pesel):
     dane = request.get_json()
     print(f"Request o edycję konta z numerem pesel {pesel}")
-    konto = RejestrKont.wyszukaj_konto_z_peselem(pesel)
-    if (dane['imie']):
-        konto.imie = dane['imie']
-    if (dane['nazwisko']):
-        konto.nazwisko = dane['nazwisko']
-    if (dane['pesel']):
-        konto.pesel = dane['pesel']
-    if (dane['saldo']):
-        konto.saldo = dane['saldo']
+    konto = RejestrKont.edytuj_konto(dane, pesel)
     return jsonify("Konto zaktualizowane"), 200
+
+@app.route("/konta/konto/<pesel>", methods=['DELETE'])
+def usun_konto(pesel):
+    print(f"Request o usunięcie konta z numerem pesel {pesel}")
+    RejestrKont.usun_konto(pesel)
+    return jsonify("Konto usuniete"), 202

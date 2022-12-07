@@ -43,10 +43,15 @@ class TestObslugaKont(unittest.TestCase):
         self.assertEqual(put_resp.status_code, 200)
         get_resp = requests.get(self.url + f"/konta/konto/{self.update_body['pesel']}")
         resp_body = get_resp.json()
-        self.assertEqual(resp_body['imie'], self.update_body['imie'])
+        self.assertEqual(resp_body["imie"], self.update_body["imie"])
         self.assertEqual(resp_body["nazwisko"], self.update_body['nazwisko'])
         self.assertEqual(resp_body["pesel"], self.update_body['pesel'])
         self.assertEqual(resp_body["saldo"], self.update_body['saldo'])
         
     def test_5_delete_po_peselu(self):
-        delete_resp = requests.delete(self.url)
+        requests.post(self.url + "/konta/stworz_konto", json=self.body)
+        delete_resp = requests.delete(self.url + f"/konta/konto/{self.body['pesel']}")
+        self.assertEqual(delete_resp.status_code, 202)
+        get_resp = requests.get(self.url + f"/konta/konto/{self.body['pesel']}")
+        resp_body = get_resp.json()
+        self.assertEqual(resp_body, "Konto nie istnieje")
