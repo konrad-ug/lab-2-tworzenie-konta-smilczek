@@ -24,7 +24,11 @@ class TestObslugaKont(unittest.TestCase):
         create_resp = requests.post(self.url + "/konta/stworz_konto", json=self.body)
         self.assertEqual(create_resp.status_code, 201)
         
-    def test_2_get_po_peselu(self):
+    def test_2_tworzenie_duplikatu_kont(self):
+        create_resp = requests.post(self.url + "/konta/stworz_konto", json=self.body)
+        self.assertEqual(create_resp.status_code, 400)
+
+    def test_3_get_po_peselu(self):
         get_resp = requests.get(self.url + f"/konta/konto/{self.body['pesel']}")
         self.assertEqual(get_resp.status_code, 200)
         resp_body = get_resp.json()
@@ -38,7 +42,7 @@ class TestObslugaKont(unittest.TestCase):
     #     resp_body = get_resp.json()
     #     self.assertEqual(resp_body, 1)
     
-    def test_4_put_po_peselu(self):
+    def test_5_put_po_peselu(self):
         put_resp = requests.put(self.url + f"/konta/konto/{self.body['pesel']}", json=self.update_body)
         self.assertEqual(put_resp.status_code, 200)
         get_resp = requests.get(self.url + f"/konta/konto/{self.update_body['pesel']}")
@@ -48,7 +52,7 @@ class TestObslugaKont(unittest.TestCase):
         self.assertEqual(resp_body["pesel"], self.update_body['pesel'])
         self.assertEqual(resp_body["saldo"], self.update_body['saldo'])
         
-    def test_5_delete_po_peselu(self):
+    def test_6_delete_po_peselu(self):
         requests.post(self.url + "/konta/stworz_konto", json=self.body)
         delete_resp = requests.delete(self.url + f"/konta/konto/{self.body['pesel']}")
         self.assertEqual(delete_resp.status_code, 202)
