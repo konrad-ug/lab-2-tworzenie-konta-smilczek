@@ -4,7 +4,8 @@ from ..KontoFirmowe import KontoFirmowe
 
 
 nazwa_firmy = "Paruwex sp. z o.o"
-nip = "1234567890"
+nip = "8461627563"
+pranie_nip = "1029384756"
 n_nip = "1234"
 class TestTworzenieKontaFirmowego(unittest.TestCase):
     def test_tworzenie_konta(self):
@@ -16,6 +17,10 @@ class TestTworzenieKontaFirmowego(unittest.TestCase):
     def test_niepoprawny_nip(self):
         piewrsze_konto = KontoFirmowe(nazwa_firmy, n_nip)
         self.assertEqual(piewrsze_konto.nip, "Niepoprawny NIP!", "NIP nie został poprawnie sprawdzony!")
+        
+    def test_pranie(self):
+        konto = KontoFirmowe(nazwa_firmy, pranie_nip)
+        self.assertEqual(konto.nip, "Pranie!", "Błąd w funkcji sprawdzającej autentyczność NIPu")
 
     def test_udany_przelew_wychodzacy(self):
         konto = KontoFirmowe(nazwa_firmy, nip)
